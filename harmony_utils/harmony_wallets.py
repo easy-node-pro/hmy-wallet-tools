@@ -1,15 +1,14 @@
 # harmony_wallets.py
 import subprocess
 
-# We will extract the list of addresses currently listed when running `./hmy keys list` in the terminal
+# Get the list of wallet addresses
 def get_addresses(hmy_app):
-    command = f"{hmy_app} keys list"
-    output = subprocess.check_output(command, shell=True).decode('utf-8')
-    lines = output.split('\n')
-    addresses = []
-    for line in lines[1:]:
-        columns = line.split()
-        if len(columns) > 1:
-            address = columns[1]
-            addresses.append(address)
-    return addresses
+    try:
+        command = f"{hmy_app} keys list"
+        output = subprocess.check_output(command, shell=True).decode('utf-8')
+        lines = output.split('\n')
+        addresses = [line.split()[1] for line in lines[1:] if len(line.split()) > 1]
+        return addresses
+    except subprocess.CalledProcessError as e:
+        print(f"Failed to list keys: {e}")
+        return []

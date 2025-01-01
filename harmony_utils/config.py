@@ -13,6 +13,7 @@ class Config:
         self.reserve_amount = environ.get("RESERVE_AMOUNT")
         self.gas_price = environ.get("GAS_PRICE")
         self.ntfy_url = environ.get("NTFY_URL")
+        self.authorization_token = environ.get("AUTHORIZATION_TOKEN")
         
     def validate(self):
         """Validate the configuration"""
@@ -24,7 +25,8 @@ class Config:
             "harmony_rpc",
             "reserve_amount",
             "gas_price",
-            "ntfy_url"
+            "ntfy_url",
+            "authorization_token"
         ]
         for var in essential_vars:
             if not getattr(self, var):

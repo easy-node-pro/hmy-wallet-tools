@@ -1,13 +1,15 @@
 # harmony_notifications.py
 import requests
 
-# Send message to an ntfy url, set custom priority or tags if required. Modify for anywhere you'd like to dump a notification.
-def send_notification(send_url, message, title, priority = "normal", tags = "harmony,rewards"):
+# Send message to an ntfy url, set custom priority or tags if required
+def send_notification(send_url, message, title, tags, priority, auth_token):
     if send_url:
         headers = {
-            "X-Title": title,
-            "X-Priority": priority,
-            "X-Tags": tags
+            "Title": title,
+            "Priority": priority,
+            "Tags": tags,
+            "Authorization": f"Bearer {auth_token}"
         }
-        requests.post(f"{send_url}", data=message, headers=headers)
-        print(f"Notification sent to {send_url}")
+        response = requests.post(send_url, data=message, headers=headers)
+        if response.status_code != 200:
+            print(f"Failed to send notification: {response.status_code}")
