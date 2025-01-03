@@ -3,15 +3,15 @@ from dotenv import load_dotenv
 
 class Config:
     def __init__(self):
-        self.dotenv_file = "/home/serviceharmony/git/hmy-wallet-tools/.env"
+        self.dotenv_file = "/home/serviceharmony/git/hmytb/.env"
         load_dotenv(self.dotenv_file)
         self.hmy_app = environ.get("HMY_APP")
         self.passphrase_file = environ.get("PASSPHRASE_FILE")
         self.rewards_wallet = environ.get("REWARDS_WALLET")
         self.harmony_validator_api = environ.get("HARMONY_VALIDATOR_API")
         self.harmony_rpc = environ.get("HARMONY_RPC")
-        self.reserve_amount = float(environ.get("RESERVE_AMOUNT"))
-        self.gas_price = environ.get("GAS_PRICE")
+        self.reserve_amount = float(environ.get("RESERVE_AMOUNT", 0))
+        self.gas_price = environ.get("GAS_PRICE", 0)
         self.ntfy_url = environ.get("NTFY_URL")
         self.authorization_token = environ.get("AUTHORIZATION_TOKEN")
         
