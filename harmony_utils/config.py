@@ -10,7 +10,7 @@ class Config:
         self.rewards_wallet = environ.get("REWARDS_WALLET")
         self.harmony_validator_api = environ.get("HARMONY_VALIDATOR_API")
         self.harmony_rpc = environ.get("HARMONY_RPC")
-        self.reserve_amount = environ.get("RESERVE_AMOUNT")
+        self.reserve_amount = float(environ.get("RESERVE_AMOUNT"))
         self.gas_price = environ.get("GAS_PRICE")
         self.ntfy_url = environ.get("NTFY_URL")
         self.authorization_token = environ.get("AUTHORIZATION_TOKEN")

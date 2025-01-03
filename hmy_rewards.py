@@ -13,6 +13,7 @@ async def main():
     total_pending = 0
     notification_message = ""
     address_rewards = []  # List to store (address, balance, pending_rewards)
+    total_transferred = 0
     
     async with aiohttp.ClientSession() as session:
         # Run the get-balance and get-pending-rewards commands for each address
@@ -65,6 +66,7 @@ async def main():
                 if transfer_amount > 0:
                     amount_transferred = await harmony_commands.transfer_rewards(address, transfer_amount, config.hmy_app, config.gas_price, config.passphrase_file, config.harmony_validator_api, config.rewards_wallet)
                     notification_message += f"Transferred {round(amount_transferred, 4)} $ONE to {address[:4]}...{address[-4:]}.\n"
+                    total_transferred += amount_transferred
                 else:
                     print(f"Not enough rewards to transfer for address {address[:4]}...{address[-4:]}")
 
