@@ -1,9 +1,9 @@
 import aiohttp
 import asyncio
 import argparse
-from harmony_utils import harmony_client, harmony_commands, harmony_notifications, harmony_wallets
-from harmony_utils.config import config
-from harmony_utils.animals import get_random_animal_emoji
+from hmytb import harmony_client, harmony_commands, harmony_notifications, harmony_wallets
+from hmytb.config import config
+from hmytb.animals import get_random_animal_emoji
 
 async def main():
     addresses = harmony_wallets.get_addresses(config.hmy_app)
